@@ -45,6 +45,20 @@ class Connector:
 
         return db
 
+    def query(self, SQL):
+       """
+        Wrapper to run SQL statements.
+        Mostly to handle exceptions in the future, doesn't do much yet
+       """
+        with self.conn.cursor() as curs:
+            try:
+                curs.execute(SQL)
+                return True, curs.fetchall()
+
+            except Exception as e
+                print(e)
+                return False, None
+
     def test_query(self):
         cur = self.conn.cursor()
         quer = cur.execute('SELECT 1;')
